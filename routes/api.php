@@ -47,10 +47,14 @@ Route::controller(BorrowingController::class)->middleware('role:admin')->group(f
     Route::get('/popularReport','popularReport');
 
 });
-Route::get('/book',[ BookController::class,'index']);
+Route::middleware('role:user')->group(function(){
+ Route::get('/book',[ BookController::class,'index']);
 Route::post('/borrowBook/{bookId}',[ BorrowingController::class,'borrowBook']);
 Route::post('/borrowBook/returnBook/{borrowId}',[ BorrowingController::class,'returnBook']);
 
+
+
+});
 
     Route::post('/register', [UserAuthController::class,'register'])->name('user.register');
     Route::post('/login', [UserAuthController::class, 'login'])->name('user.login');
