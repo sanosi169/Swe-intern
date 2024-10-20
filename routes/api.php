@@ -47,9 +47,9 @@ Route::controller(BorrowingController::class)->middleware('role:admin')->group(f
     Route::get('/popularReport','popularReport');
 
 });
-// Route::get('/book', 'index');
-// Route::post('/borrowBook/{bookId}','borrowBook');
-// Route::post('/borrowBook/returnBook/{borrowId}','returnBook');
+Route::get('/book',[ BookController::class,'index']);
+Route::post('/borrowBook/{bookId}',[ BorrowingController::class,'borrowBook']);
+Route::post('/borrowBook/returnBook/{borrowId}',[ BorrowingController::class,'returnBook']);
 
 
     Route::post('/register', [UserAuthController::class,'register'])->name('user.register');
