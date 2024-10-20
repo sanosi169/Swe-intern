@@ -26,7 +26,7 @@ class BookController extends Controller
  
          return $this->apiresponse($books, 'ok', 200);
      } catch (\Exception $e) {
-         return $this->apiresponse(null, 'حدث خطأ أثناء استرجاع البيانات: ' . $e->getMessage(), 500);
+         return $this->apiresponse(null, 'error' . $e->getMessage(), 500);
      }
    }
 
@@ -39,7 +39,7 @@ class BookController extends Controller
       return $this->apiresponse($book, 'Book added successfully', 201);
 
    } catch (\Exception $e) {
-      return $this->apiresponse(null, 'حدث خطأ أثناء استرجاع البيانات: ' . $e->getMessage(), 500);
+      return $this->apiresponse(null, 'error' . $e->getMessage(), 500);
   }
 
     
@@ -61,11 +61,11 @@ class BookController extends Controller
          
       $upadtebook=$this->bookRepository->updateBook($book,$newDetails);
          // return $this->apiresponse($books, 'Book added successfully', 201);
-         return response()->json('تم الحذف بنجاح', 200);
+         return response()->json('error', 200);
 
 
          }catch(\Exception $e){
-            return $this->apiresponse(null, 'حدث خطأ أثناء استرجاع البيانات: ' . $e->getMessage(), 500);
+            return $this->apiresponse(null, 'error'. $e->getMessage(), 500);
 
          }
        }
@@ -80,7 +80,7 @@ class BookController extends Controller
                'data' => $deletedItem // Assuming you have the deleted item to return
            ]);
          }catch(\Exception $e){
-            return $this->apiresponse( null,'حدث خطأ أثناء استرجاع البيانات: ' . $e->getMessage(), 500);
+            return $this->apiresponse( null,'error' . $e->getMessage(), 500);
 
          }
        }
